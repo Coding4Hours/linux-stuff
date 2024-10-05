@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Amazon Scraper</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazon Scraper</h1>
+        <form action="/scrape" method="post">
+            <label for="scrapeType">Select Scrape Type:</label>
+            <select name="scrapeType" id="scrapeType" onchange="updateurlList()">
+                <option value="search_results">Search Results</option>
+                <option value="product_page">Product Page</option>
+            </select>
+            <br>
+            <label for="url">URL or Search query:</label>
+            <input list="queries" type="text" id="query" name="url">
+            <datalist id="queries">
+                <option value="Pusheen">
+                <option value="Pompompurin">
+                <option value="Snoopy">
+            </datalist>
+            <br>
+            <button type="submit">Scrape</button>
+        </form>
+    </div>
+    
+    <script>
+        function updateurlList() {
+            const scrapeType = document.getElementById('scrapeType').value;
+            const urlInput = document.getElementById('query');
+            if (scrapeType === 'product_page') {
+                urlInput.removeAttribute('list');
+            } else {
+                urlInput.setAttribute('list', 'queries');
+            }
+        }
+    </script>
+</body>
+</html>
